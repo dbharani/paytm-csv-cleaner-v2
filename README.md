@@ -2,6 +2,8 @@
 
 A production-quality, dashboard-style web app for turning a raw Paytm POS CSV export into a professionally formatted, per-POS-reconciled XLSX report — entirely in the browser. No backend, no build step, no server. Open `index.html` directly (double-click it) or host it on GitHub Pages.
 
+**Live app**: https://deepakby1121.github.io/paytm-csv-cleaner-v2/
+
 ## Features
 
 - **CSV import** — click-to-upload or drag & drop, with a live parsing progress bar, filename/size/row-count display, and graceful skipping (with a count) of rows with a missing/invalid date, amount, or POS_ID. Handles UTF-8 BOM, quoted commas, escaped quotes, Excel's leading-apostrophe date artifact, and comma-thousands amounts. Tested at 100,000+ rows.
