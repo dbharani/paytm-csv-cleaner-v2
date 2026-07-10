@@ -204,8 +204,8 @@ function initPosFilters(posIds) {
 /**
  * Applies a business-day preset to a POS card: recomputes Start/End from
  * the POS's earliest transaction and overwrites the visible fields. For
- * 'custom', this only updates the stored preset — field values are left
- * untouched.
+ * 'custom', Start/End default to the POS's first/last transaction
+ * date and time.
  * @param {string} posId
  * @param {'6am'|'8am'|'custom'} preset
  * @param {{persist?: boolean}} [options] - Set persist:false during initial restore-from-storage to avoid overwriting the just-loaded preference with the per-card default.
@@ -214,7 +214,21 @@ function applyPreset(posId, preset, { persist = true } = {}) {
   state.filters.set(posId, { preset });
   ui.setPosPreset(posId, preset);
 
-  if (preset !== 'custom') {
+  if (preset === 'custom') {
+    const { earliest, latest } = state.posStats.get(posId);
+    // Filter ranges are half-open ([start, end)) and the End field only has
+    // minute precision, so using the last transaction's exact time as End
+    // would exclude it. Round End up to the next minute to keep it included.
+    const inclusiveEnd = latest
+      ? new Date(latest.getFullYear(), latest.getMonth(), latest.getDate(), latest.getHours(), latest.getMinutes() + 1)
+      : latest;
+    ui.setPosCardDateTime(posId, {
+      startDate: dateToInputDate(earliest),
+      startTime: dateToInputTime(earliest),
+      endDate: dateToInputDate(inclusiveEnd),
+      endTime: dateToInputTime(inclusiveEnd),
+    });
+  } else {
     const { start, end } = computeBusinessDayWindow(state.posMap.get(posId), PRESET_HOURS[preset]);
     ui.setPosCardDateTime(posId, {
       startDate: dateToInputDate(start),
