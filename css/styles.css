@@ -1,0 +1,231 @@
+/* ==========================================================================
+   Paytm CSV Cleaner V2 — theme, layout, and component styles.
+   Layered on top of Bootstrap 5; uses CSS variables for light/dark palettes.
+   ========================================================================== */
+
+:root {
+  --app-bg: #f4f6fa;
+  --app-surface: #ffffff;
+  --app-border: #e3e7ee;
+  --app-text: #1c2430;
+  --app-text-muted: #6b7280;
+  --app-primary: #1f3864;
+  --app-primary-accent: #5b9bd5;
+  --app-shadow: 0 1px 2px rgba(16, 24, 40, 0.04), 0 1px 3px rgba(16, 24, 40, 0.08);
+  --app-radius: 0.75rem;
+}
+
+[data-bs-theme='dark'] {
+  --app-bg: #10141c;
+  --app-surface: #1a2029;
+  --app-border: #2a3140;
+  --app-text: #e6e9ef;
+  --app-text-muted: #9aa4b2;
+  --app-primary: #5b9bd5;
+  --app-primary-accent: #7fb2e0;
+  --app-shadow: 0 1px 2px rgba(0, 0, 0, 0.3), 0 4px 12px rgba(0, 0, 0, 0.25);
+}
+
+body {
+  background-color: var(--app-bg);
+  color: var(--app-text);
+  transition: background-color 0.15s ease, color 0.15s ease;
+}
+
+.app-navbar {
+  background-color: var(--app-surface);
+  border-bottom: 1px solid var(--app-border);
+}
+
+.app-footer {
+  color: var(--app-text-muted);
+  border-top: 1px solid var(--app-border);
+  margin-top: 2rem;
+}
+
+.app-card {
+  background-color: var(--app-surface);
+  border: 1px solid var(--app-border);
+  border-radius: var(--app-radius);
+  box-shadow: var(--app-shadow);
+}
+
+.card-title {
+  color: var(--app-text);
+}
+
+/* Drop zone -------------------------------------------------------------- */
+
+.drop-zone {
+  border: 2px dashed var(--app-border);
+  border-radius: var(--app-radius);
+  padding: 2.5rem 1.5rem;
+  text-align: center;
+  cursor: pointer;
+  color: var(--app-text-muted);
+  transition: border-color 0.15s ease, background-color 0.15s ease;
+}
+
+.drop-zone:hover,
+.drop-zone:focus-visible {
+  border-color: var(--app-primary-accent);
+  background-color: color-mix(in srgb, var(--app-primary-accent) 6%, transparent);
+  outline: none;
+}
+
+.drop-zone.drag-over {
+  border-color: var(--app-primary-accent);
+  background-color: color-mix(in srgb, var(--app-primary-accent) 12%, transparent);
+}
+
+.drop-zone-icon {
+  color: var(--app-primary-accent);
+  margin-bottom: 0.5rem;
+}
+
+.file-meta .badge {
+  font-weight: 500;
+  font-size: 0.8rem;
+}
+
+/* Alerts ------------------------------------------------------------------ */
+
+.alert-region:empty {
+  display: none;
+}
+
+.alert-region .alert:last-child {
+  margin-bottom: 0;
+}
+
+/* Generic stat tile used in the summary panel ----------------------------- */
+
+.stat-tile {
+  background-color: var(--app-bg);
+  border: 1px solid var(--app-border);
+  border-radius: var(--app-radius);
+  padding: 0.9rem 1rem;
+  height: 100%;
+}
+
+.stat-tile .stat-label {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--app-text-muted);
+}
+
+.stat-tile .stat-value {
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: var(--app-text);
+}
+
+.stat-tile .stat-value.stat-value-sm {
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+/* POS cards ---------------------------------------------------------------- */
+
+.pos-card {
+  background-color: var(--app-surface);
+  border: 1px solid var(--app-border);
+  border-radius: var(--app-radius);
+  box-shadow: var(--app-shadow);
+}
+
+.pos-card.is-invalid {
+  border-color: #dc3545;
+}
+
+.pos-card.is-excluded {
+  opacity: 0.6;
+}
+
+.pos-card.is-excluded .pos-card-header {
+  text-decoration: line-through;
+  text-decoration-color: var(--app-text-muted);
+}
+
+.pos-card .pos-card-header {
+  font-weight: 600;
+  font-size: 1.05rem;
+}
+
+.pos-card .pos-readonly-row {
+  font-size: 0.85rem;
+  color: var(--app-text-muted);
+}
+
+.pos-card .pos-live-count,
+.pos-card .pos-live-total {
+  font-weight: 600;
+  color: var(--app-primary);
+}
+
+[data-bs-theme='dark'] .pos-card .pos-live-count,
+[data-bs-theme='dark'] .pos-card .pos-live-total {
+  color: var(--app-primary-accent);
+}
+
+/* POS card transaction viewer ---------------------------------------------- */
+
+.pos-tx-table-wrap {
+  max-height: 260px;
+  overflow-y: auto;
+}
+
+.pos-tx-sort-date {
+  cursor: pointer;
+  user-select: none;
+}
+
+.pos-stats-row {
+  border-top: 1px dashed var(--app-border);
+  padding-top: 0.35rem;
+}
+
+/* Forms -------------------------------------------------------------------- */
+
+.form-label.small {
+  font-weight: 500;
+  color: var(--app-text-muted);
+}
+
+[data-bs-theme='dark'] .form-control,
+[data-bs-theme='dark'] .form-select {
+  background-color: var(--app-bg);
+  color: var(--app-text);
+  border-color: var(--app-border);
+}
+
+[data-bs-theme='dark'] .form-control::placeholder {
+  color: var(--app-text-muted);
+}
+
+/* Print ---------------------------------------------------------------------- */
+
+@media print {
+  .app-navbar,
+  .app-footer,
+  #uploadCardTitle,
+  #dropZone,
+  #generateSection,
+  #posCardsSection,
+  .alert-region,
+  #summaryActions {
+    display: none !important;
+  }
+
+  body {
+    background: #fff;
+    color: #000;
+  }
+
+  .app-card,
+  .stat-tile {
+    box-shadow: none !important;
+    border: 1px solid #ccc !important;
+  }
+}

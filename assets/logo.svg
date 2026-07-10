@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32" role="img" aria-label="Paytm CSV Cleaner logo">
+  <rect x="2" y="2" width="28" height="28" rx="7" fill="#1F3864"/>
+  <path d="M9 21V11h4.5a3.5 3.5 0 0 1 0 7H11v3H9z" fill="#ffffff"/>
+  <path d="M11 13v3h2.5a1.5 1.5 0 0 0 0-3H11z" fill="#1F3864"/>
+  <path d="M18.5 21l3-6.5-3-6.5h2.3l1.9 4.3 1.9-4.3H27l-3 6.5 3 6.5h-2.3l-1.9-4.3-1.9 4.3z" fill="#5B9BD5"/>
+</svg>
